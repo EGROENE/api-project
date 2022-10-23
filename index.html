@@ -21,13 +21,24 @@
             <nav>
                 <ul>
                     <li>All Characters</li>
-                    <li>Favorites</li>
+                    <li data-open="favs">Favorites</li>
                 </ul>
             </nav>
         </div>
     </div>
     <main>
         <section id="chars-container"></section>
+        <div id="favs" class="full-site-modal page-block" data-animation="zoomInOut">
+            <div class="container-fluid">
+                <header class="modal-header">
+                    <h3>Favorites</h3>
+                    <i class="fas fa-times" data-close></i>
+                </header>
+                <div id="favs-modal-body">
+                    
+                </div>
+            </div>
+        </div>
     </main>
     <script src="./js/main.js"></script>
 </body>
