@@ -1,26 +1,54 @@
 const charsSection = document.getElementById('chars-container');
 const charsURL = 'https://hp-api.herokuapp.com/api/characters';
 
-fetch(charsURL)
-    .then(response => response.json())
-    .then(responseJson => {
-        for (let i = 0; i < 22; i++) {
-            console.log(responseJson[i]);
-            console.log(responseJson[i].name);
-            if (responseJson[i].species === 'human' && responseJson[i].image) {
-                charsSection.innerHTML += 
-                "<div class='char-card display-in-all'>" 
-                    + "<div class='char-img-container'>"
-                    + "<button class='favs-btn' title='Add to Favorites'><i class='far fa-heart'></i></button>"
-                    + "<img src='" + responseJson[i].image + "'>"
-                    + "</div>"
-                    + "<header class='char-header'>" + responseJson[i].name + "</header>"
-                    + "<p>" + responseJson[i].ancestry + "</p>"
-                    + "<p>" + responseJson[i].house + "</p>"
-                + "</div>"
+// Populate 'all':
+async function getChars() {
+    const response = await fetch(charsURL);
+    const allCharsArr = await response.json();
+    console.log(allCharsArr);
+    console.log(allCharsArr[2]);
+    console.log(allCharsArr.length);
+    console.log(allCharsArr[15]);
+    console.log(allCharsArr[15].species); // human
+    // Delete from allCharsArr any item that is not human and/or doesn't have an image:
+    /* const filterAllCharsArr = () => {
+        for (let i = 0; allCharsArr.length; i++) {
+            if (allCharsArr[i].species !== 'human' || !allCharsArr[i].image) {
+                //let indexOfItemToBeDel = allCharsArr.indexOf(allCharsArr[i]);
+                allCharsArr.splice(allCharsArr[i], 1);
             }
         }
-    })
+    }
+    setTimeout(filterAllCharsArr(), 8000); */
+    for (let i = 0; allCharsArr.length; i++) {
+        if (allCharsArr[i].species !== 'human' || !allCharsArr[i].image) {
+            allCharsArr.splice(allCharsArr[i], 1);
+        }
+    }
+    console.log(allCharsArr);
+    /* for (let i = 0; i < 22; i++) {
+        if (allCharsArr[i].species === 'human' && allCharsArr[i].image) {
+            charsSection.innerHTML += 
+            "<div class='char-card'>" 
+                + "<div class='char-img-container'>"
+                + "<button id='favs-btn' title='Add to Favorites'><i class='far fa-heart'></i></button>"
+                + "<img src='" + allCharsArr[i].image + "'>"
+                + "</div>"
+                + "<header class='char-header'>" + allCharsArr[i].name + "</header>"
+                + "<p>" + allCharsArr[i].ancestry + "</p>"
+                + "<p>" + allCharsArr[i].house + "</p>"
+            + "</div>"
+        }
+    } */
+    // Func to add to favs array then delete from allCharsArr:
+    
+    // Run on click of favs btn (event listener)
+
+
+    // Func to delete from favs, re-add to 'all':
+    // Run on click of remove from favs btn (event listener)
+}
+getChars();
 
 // FAV MODAL JS
 const modalOpen = '[data-open]';
