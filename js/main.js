@@ -1,7 +1,7 @@
 const charsSection = document.getElementById('chars-container');
 const charsURL = 'https://hp-api.herokuapp.com/api/characters';
 
-// Populate 'all':
+// Get characters from API:
 async function getChars() {
     const response = await fetch(charsURL);
     console.log(response.ok);
@@ -10,46 +10,40 @@ async function getChars() {
     console.log(allCharsArr[2]);
     console.log(allCharsArr[2].species);
     console.log(allCharsArr.length);
-    // Delete from allCharsArr any item that is not human and/or doesn't have an image:
-    /* const filterAllCharsArr = () => {
-        for (let i = 0; allCharsArr.length; i++) {
-            if (allCharsArr[i].species !== 'human' || !allCharsArr[i].image) {
-                //let indexOfItemToBeDel = allCharsArr.indexOf(allCharsArr[i]);
-                allCharsArr.splice(allCharsArr[i], 1);
-            }
+    
+    // Push into newCharsArr all characters that are human & contain an image URL:
+    let newCharsArr = [];
+    for (let i = 0; i < allCharsArr.length; i++) {
+        if (allCharsArr[i].species === 'human' && allCharsArr[i].image.length > 0) {
+            newCharsArr.push(allCharsArr[i]);
         }
     }
-    setTimeout(filterAllCharsArr(), 8000); */
-    for (let i = 0; allCharsArr.length; i++) {
-        if (allCharsArr[i].species !== 'human' || !allCharsArr[i].image) {
-            allCharsArr.splice(allCharsArr[i], 1);
-        }
-    }
-    console.log(allCharsArr);
-    /* for (let i = 0; i < 22; i++) {
-        if (allCharsArr[i].species === 'human' && allCharsArr[i].image) {
-            charsSection.innerHTML += 
+    console.log(newCharsArr);
+    return newCharsArr;
+}
+// Access newCharsArr outside of async function to populate homepage:
+getChars().then(newCharsArr => {
+    for (let i = 0; i < newCharsArr.length; i++) {
+        charsSection.innerHTML += 
             "<div class='char-card'>" 
                 + "<div class='char-img-container'>"
                 + "<button id='favs-btn' title='Add to Favorites'><i class='far fa-heart'></i></button>"
-                + "<img src='" + allCharsArr[i].image + "'>"
+                + "<img src='" + newCharsArr[i].image + "'>"
                 + "</div>"
-                + "<header class='char-header'>" + allCharsArr[i].name + "</header>"
-                + "<p>" + allCharsArr[i].ancestry + "</p>"
-                + "<p>" + allCharsArr[i].house + "</p>"
+                + "<header class='char-header'>" + newCharsArr[i].name + "</header>"
+                + "<p>" + newCharsArr[i].ancestry + "</p>"
+                + "<p>" + newCharsArr[i].house + "</p>"
             + "</div>"
-        }
-    } */
-    // Func to add to favs array then delete from allCharsArr:
+    }
+});
+
+// Func to add to favs array then delete from allCharsArr:
     
-    // Run on click of favs btn (event listener)
+// Run on click of favs btn (event listener)
 
 
-    // Func to delete from favs, re-add to 'all':
-    // Run on click of remove from favs btn (event listener)
-    return allCharsArr;
-}
-getChars();
+// Func to delete from favs, re-add to 'all':
+// Run on click of remove from favs btn (event listener)
 
 // FAV MODAL JS
 const modalOpen = '[data-open]';
