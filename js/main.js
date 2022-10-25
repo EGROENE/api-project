@@ -4,12 +4,12 @@ const charsURL = 'https://hp-api.herokuapp.com/api/characters';
 // Populate 'all':
 async function getChars() {
     const response = await fetch(charsURL);
+    console.log(response.ok);
     const allCharsArr = await response.json();
     console.log(allCharsArr);
     console.log(allCharsArr[2]);
+    console.log(allCharsArr[2].species);
     console.log(allCharsArr.length);
-    console.log(allCharsArr[15]);
-    console.log(allCharsArr[15].species); // human
     // Delete from allCharsArr any item that is not human and/or doesn't have an image:
     /* const filterAllCharsArr = () => {
         for (let i = 0; allCharsArr.length; i++) {
