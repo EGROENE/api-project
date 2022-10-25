@@ -6,10 +6,6 @@ async function getChars() {
     const response = await fetch(charsURL);
     console.log(response.ok);
     const allCharsArr = await response.json();
-    console.log(allCharsArr);
-    console.log(allCharsArr[2]);
-    console.log(allCharsArr[2].species);
-    console.log(allCharsArr.length);
     
     // Push into newCharsArr all characters that are human & contain an image URL:
     let newCharsArr = [];
