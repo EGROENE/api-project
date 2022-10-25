@@ -47,6 +47,7 @@ async function getChars() {
 
     // Func to delete from favs, re-add to 'all':
     // Run on click of remove from favs btn (event listener)
+    return allCharsArr;
 }
 getChars();
 
