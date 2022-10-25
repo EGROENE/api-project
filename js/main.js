@@ -27,8 +27,9 @@ getChars().then(newCharsArr => {
                 + "<img src='" + newCharsArr[i].image + "'>"
                 + "</div>"
                 + "<header class='char-header'>" + newCharsArr[i].name + "</header>"
-                + "<p>" + newCharsArr[i].ancestry + "</p>"
-                + "<p>" + newCharsArr[i].house + "</p>"
+                + "<p><span>Ancestry: </span>" + newCharsArr[i].ancestry + "</p>"
+                + "<p><span>House: </span>" + newCharsArr[i].house + "</p>"
+                + "<p><span>Actor/Actress: </span>" + newCharsArr[i].actor + "</p>"
             + "</div>"
     }
 });
