@@ -22,7 +22,7 @@ async function buildPage() {
     const newCharsArr = await getChars();
     for (let i = 0; i < newCharsArr.length; i++) {
         charsSection.innerHTML += 
-            "<div class='char-card'>" 
+            "<div class='char-card' data-" + newCharsArr[i].name.toLowerCase().replace(/\s/g, '') + ">" 
                 + "<div class='char-img-container'>"
                 + "<button id='favs-btn' title='Add to Favorites'><i class='far fa-heart'></i></button>"
                 + "<img src='" + newCharsArr[i].image + "'>"
@@ -37,6 +37,7 @@ async function buildPage() {
 buildPage();
 
 // Func to add to favs array then delete from allCharsArr:
+
     
 // Run on click of favs btn (event listener)
 
