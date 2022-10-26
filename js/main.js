@@ -18,7 +18,8 @@ async function getChars() {
     return newCharsArr;
 }
 // Access newCharsArr outside of async function to populate homepage:
-getChars().then(newCharsArr => {
+async function buildPage() {
+    const newCharsArr = await getChars();
     for (let i = 0; i < newCharsArr.length; i++) {
         charsSection.innerHTML += 
             "<div class='char-card'>" 
@@ -32,7 +33,8 @@ getChars().then(newCharsArr => {
                 + "<p><span>Actor/Actress: </span>" + newCharsArr[i].actor + "</p>"
             + "</div>"
     }
-});
+}
+buildPage();
 
 // Func to add to favs array then delete from allCharsArr:
     
