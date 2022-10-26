@@ -20,9 +20,11 @@ async function getChars() {
 // Access newCharsArr outside of async function to populate homepage:
 async function buildPage() {
     const newCharsArr = await getChars();
+    console.log(newCharsArr);
+    // Populate char cards' HTML:
     for (let i = 0; i < newCharsArr.length; i++) {
         charsSection.innerHTML += 
-            "<div class='char-card' data-" + newCharsArr[i].name.toLowerCase().replace(/\s/g, '') + ">" 
+            "<div class='char-card' data-name='" + newCharsArr[i].name.toLowerCase().replace(/\s/g, '') + "'>" 
                 + "<div class='char-img-container'>"
                 + "<button id='favs-btn' title='Add to Favorites'><i class='far fa-heart'></i></button>"
                 + "<img src='" + newCharsArr[i].image + "'>"
