@@ -6,6 +6,11 @@ async function getChars() {
     const response = await fetch(charsURL);
     console.log(response.ok);
     const allCharsArr = await response.json();
+    // A-Z by name:
+    console.log(allCharsArr[0].name)
+    allCharsArr.sort((a, b) => {
+        return a.name - b.name;
+    })
     
     // Push into newCharsArr all characters that are human & contain an image URL:
     let newCharsArr = [];
@@ -17,16 +22,16 @@ async function getChars() {
     console.log(newCharsArr);
     return newCharsArr;
 }
+
 // Access newCharsArr outside of async function to populate homepage:
 async function buildPage() {
     const newCharsArr = await getChars();
-    console.log(newCharsArr);
     // Populate char cards' HTML:
     for (let i = 0; i < newCharsArr.length; i++) {
         charsSection.innerHTML += 
-            "<div class='char-card' data-name='" + newCharsArr[i].name.toLowerCase().replace(/\s/g, '') + "'>" 
+            "<div class='char-card' data-name='" + newCharsArr[i].name.toLowerCase().replace(/\s/g, '-') + "'>" 
                 + "<div class='char-img-container'>"
-                + "<button id='favs-btn' title='Add to Favorites'><i class='far fa-heart'></i></button>"
+                + "<button class='favs-btn' title='Add to Favorites'><i class='far fa-heart'></i></button>"
                 + "<img src='" + newCharsArr[i].image + "'>"
                 + "</div>"
                 + "<header class='char-header'>" + newCharsArr[i].name + "</header>"
@@ -36,13 +41,67 @@ async function buildPage() {
             + "</div>"
     }
 }
-buildPage();
+//buildPage();
 
-// Func to add to favs array then delete from allCharsArr:
+// Func to add to favs array, delete from allCharsArr:
+// Maybe need another async function
+let favsArr = [];
+async function addToFavs() {
+    await buildPage();
+    const newCharsArr = await getChars();
+    const charCards = document.querySelectorAll('.char-card');
+    console.log(charCards[0]);
+    /* const remAllAddFavs = () => {
+        for (let i = 1; i < 5; i++) {
+            newCharsArr.splice(newCharsArr[i], 1);
+            favsArr.push(charCards[i]);
+            charCards[i].classList.add('invisible');
+        }
+    } */
+    console.log(favsArr);
+    console.log(newCharsArr);
 
-    
-// Run on click of favs btn (event listener)
+    // Run on click of favs btn (event listener). Put inside addToFavs().
+    const favBtns = document.querySelectorAll('.favs-btn');
+    console.log(favBtns);
+    for (let btn of favBtns) {
+        // logic below is good, just figure out how to configure it with any given card
+        btn.addEventListener('click', function() {
+            for (let i = 0; i < 1; i++) {
+                // Make charCard invisible:
+                charCards[i].classList.add('invisible');
 
+                // push item from api into favsArr, not its HTML elem, as this will be built w/o .invisible in separate function:
+                //favsArr.push(charCards[i]);
+                favsArr.push(newCharsArr[i]);
+                console.log(favsArr);
+                console.log(favsArr[0]);
+
+                // Remove item from newCharsArr:
+                newCharsArr.splice(newCharsArr[i], 1);
+                console.log(newCharsArr.length);
+                console.log(newCharsArr[0]);
+                
+                // Add items in favsArr to favs modal. favsArr needs to be accessed:
+                const favsModalBody = document.getElementById('favs-modal-body');
+                for (let i = 0; i < favsArr.length; i++) {
+                    favsModalBody.innerHTML += 
+                    "<div class='char-card' data-name='" + favsArr[i].name.toLowerCase().replace(/\s/g, '-') + "'>" 
+                        + "<div class='char-img-container'>"
+                        + "<button class='del-favs-btn' title='Remove from Favorites'><i class='fas fa-times'></i></button>"
+                        + "<img src='" + favsArr[i].image + "'>"
+                        + "</div>"
+                        + "<header class='char-header'>" + favsArr[i].name + "</header>"
+                        + "<p><span>Ancestry: </span>" + favsArr[i].ancestry + "</p>"
+                        + "<p><span>House: </span>" + favsArr[i].house + "</p>"
+                        + "<p><span>Actor/Actress: </span>" + favsArr[i].actor + "</p>"
+                    + "</div>"
+                }
+            }
+        });
+    }
+}
+addToFavs();
 
 // Func to delete from favs, re-add to 'all':
 // Run on click of remove from favs btn (event listener)
