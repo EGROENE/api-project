@@ -6,10 +6,10 @@ Here are the project requirements:
 - In your HTML you will display the array of data you get back (i.e. if it was an array of movies, you would display the list of movies). <br>
 - Display a minimum of 3 values from the object in the array of data you get back for each item. (i.e. movie name, movie description, cover image).
 2. HTML for each item should be created programmatically. This means the html is created  based on the data received from the API <br> 
--if 10 items are fetched, 10 blocks of HTML are created to display the data, etc. <br>
+- if 10 items are fetched, 10 blocks of HTML are created to display the data, etc. <br>
 3. Build a function to add selected items from the array of data to a "favorites" list. i.e.: <br>
 - You fetch a list of 30 movies from an API and display it in a "collection" in your HTML.<br>
--When a user selects an item(s) from the "collection" to add to the "favorites" list, the item(s) are removed from the collection and added to the "favorites" list.<br>
+- When a user selects an item(s) from the "collection" to add to the "favorites" list, the item(s) are removed from the collection and added to the "favorites" list.<br>
 4. Build a function to remove an item from the "favorites" list.<br>
 - When a user removes an item from the "favorites" list, the item is added back to the "collection" of items.<br>
 5. Build a toggle function that sorts the items in the collection and "favorites" list alphabetically (A-Z) and vice versa (Z-A).<br>
