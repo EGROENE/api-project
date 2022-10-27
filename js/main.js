@@ -62,11 +62,11 @@ async function addToFavs() {
     console.log(newCharsArr);
 
     // Run on click of favs btn (event listener). Put inside addToFavs().
-    const hermioneFavBtn = document.querySelector('[data-name=hermione-granger]');
+    const hermioneFavBtn = document.querySelector('[data-name=hermione-granger]'); // maybe return all data-names
     console.log(hermioneFavBtn);
         // logic below is good, just figure out how to configure it with any given card
         hermioneFavBtn.addEventListener('click', function() {
-            for (let i = 1; i < 2; i++) {
+            for (let i = 1; i < 2; i++) { // after returning all data-names, put contents of this loop into a function. Then, depending on the position of data-name in alldatanames, call a different for loop w/ same function containing this loop's contents.
                 // Make charCard invisible:
                 charCards[i].classList.add('invisible');
 
