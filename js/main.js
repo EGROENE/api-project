@@ -62,10 +62,10 @@ async function addToFavs() {
     console.log(newCharsArr);
 
     // Run on click of favs btn (event listener). Put inside addToFavs().
-    const btn = document.querySelector('[data-name=hermione-granger]');
-    console.log(btn);
+    const hermioneFavBtn = document.querySelector('[data-name=hermione-granger]');
+    console.log(hermioneFavBtn);
         // logic below is good, just figure out how to configure it with any given card
-        btn.addEventListener('click', function() {
+        hermioneFavBtn.addEventListener('click', function() {
             for (let i = 1; i < 2; i++) {
                 // Make charCard invisible:
                 charCards[i].classList.add('invisible');
