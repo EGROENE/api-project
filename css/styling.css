@@ -58,7 +58,8 @@ h2:hover {
     transition: 700ms;
 }
 
-#chars-container {
+#chars-container,
+#favs-modal-body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     column-gap: var(--size-20);
@@ -71,6 +72,14 @@ h2:hover {
     background: rgba(0, 0, 0, 0.8);
     padding: var(--size-20);
     text-align: center;
+}
+
+.favs-btn {
+    position: absolute;
+}
+
+.favs-btn:hover {
+    cursor: pointer;
 }
 
 .char-card header {
@@ -129,6 +138,7 @@ h2:hover {
     visibility: hidden;
     opacity: 0;
     z-index: 200;
+    overflow-y: auto;
 }
 
 .modal-dialog {
