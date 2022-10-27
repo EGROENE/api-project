@@ -2,10 +2,10 @@
 This is a project I'm working on for the Devslopes Academy. We are to implement an API using only HTML, CSS, & vanilla JavaScript. I will update this document further as I make progress.
 
 Here are the project requirements:
-* Fetch data from an API (resource provided below) and display up to 30 items from that request in your HTML.
-- In your HTML you will display the array of data you get back (i.e. if it was an array of movies, you would display the list of movies).
+1. Fetch data from an API (resource provided below) and display up to 30 items from that request in your HTML.<br>
+- In your HTML you will display the array of data you get back (i.e. if it was an array of movies, you would display the list of movies). <br>
 - Display a minimum of 3 values from the object in the array of data you get back for each item. (i.e. movie name, movie description, cover image).
-* HTML for each item should be created programmatically. This means the html is created  based on the data received from the API - if 10 items are fetched, 10 blocks of HTML are created to display the data, etc.
+2. HTML for each item should be created programmatically. This means the html is created  based on the data received from the API - if 10 items are fetched, 10 blocks of HTML are created to display the data, etc.
 * Build a function to add selected items from the array of data to a "favorites" list. i.e.:
 - You fetch a list of 30 movies from an API and display it in a "collection" in your HTML.
 -When a user selects an item(s) from the "collection" to add to the "favorites" list, the item(s) are removed from the collection and added to the "favorites" list.
