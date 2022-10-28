@@ -61,6 +61,10 @@ async function addToFavs() {
     console.log(favsArr);
     console.log(newCharsArr);
 
+    // Query all data-names
+    // Add EL to every one
+    // EL func should add particular item to favs & remove from newCharsArr
+    
     // Run on click of favs btn (event listener). Put inside addToFavs().
     const hermioneFavBtn = document.querySelector('[data-name=hermione-granger]'); // maybe return all data-names
     console.log(hermioneFavBtn);
