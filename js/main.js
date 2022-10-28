@@ -77,9 +77,9 @@ async function addToFavs() {
                 console.log(favsArr[0]);
 
                 // Remove item from newCharsArr:
-                newCharsArr.splice(newCharsArr[i], 1);
+                newCharsArr.splice(i, 1); // first value here should equal init value of i in for loop
+                console.log(newCharsArr);
                 console.log(newCharsArr.length);
-                console.log(newCharsArr[0]);
                 
                 // Add items in favsArr to favs modal. favsArr needs to be accessed:
                 const favsModalBody = document.getElementById('favs-modal-body');
