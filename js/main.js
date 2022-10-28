@@ -49,7 +49,7 @@ let favsArr = [];
 async function addToFavs() {
     await buildPage();
     const newCharsArr = await getChars();
-    const charCards = document.querySelectorAll('.char-card');
+    let charCards = document.querySelectorAll('.char-card');
     console.log(charCards[0]);
     /* const remAllAddFavs = () => {
         for (let i = 1; i < 5; i++) {
@@ -64,18 +64,27 @@ async function addToFavs() {
     // Query all data-names
     // Add EL to every one
     // EL func should add particular item to favs & remove from newCharsArr
-    
-    // Run on click of favs btn (event listener). Put inside addToFavs().
-    const hermioneFavBtn = document.querySelector('[data-name=hermione-granger]'); // maybe return all data-names
-    console.log(hermioneFavBtn);
+
+    // Get all items with data-name:
+    let favBtns = document.querySelectorAll('.favs-btn');
+    favBtns = Array.from(favBtns);
+    console.log(favBtns);
+
+    // Add EL to every favBtn:
+    for (let favBtn of favBtns) {
         // logic below is good, just figure out how to configure it with any given card
-        hermioneFavBtn.addEventListener('click', function() {
-            for (let i = 1; i < 2; i++) { // after returning all data-names, put contents of this loop into a function. Then, depending on the position of data-name in alldatanames, call a different for loop w/ same function containing this loop's contents.
+        favBtn.addEventListener('click', function() {
+            console.log(favBtns.indexOf(favBtn));
+            console.log(favBtns.indexOf(favBtn) + 1);
+            for (let i = favBtns.indexOf(favBtn); i < (favBtns.indexOf(favBtn) + 1); i++) { // after returning all data-names, put contents of this loop into a function. Then, depending on the position of data-name in alldatanames, call a different for loop w/ same function containing this loop's contents.
                 // Make charCard invisible:
                 charCards[i].classList.add('invisible');
-
+                
                 // push item from api into favsArr, not its HTML elem, as this will be built w/o .invisible in separate function:
                 //favsArr.push(charCards[i]);
+                /* if (!favsArr.includes(newCharsArr[i])) {
+                    favsArr.push(newCharsArr[i]);
+                } */
                 favsArr.push(newCharsArr[i]);
                 console.log(favsArr);
                 console.log(favsArr[0]);
@@ -87,21 +96,24 @@ async function addToFavs() {
                 
                 // Add items in favsArr to favs modal. favsArr needs to be accessed:
                 const favsModalBody = document.getElementById('favs-modal-body');
-                for (let i = 0; i < favsArr.length; i++) {
+                for (let i = favBtns.indexOf(favBtn); i < (favBtns.indexOf(favBtn) + 1); i++) {
                     favsModalBody.innerHTML += 
-                    "<div class='char-card' data-name='" + favsArr[i].name.toLowerCase().replace(/\s/g, '-') + "'>" 
+                    "<div class='char-card' data-name='" + favsArr[favsArr.length - 1].name.toLowerCase().replace(/\s/g, '-') + "'>" 
                         + "<div class='char-img-container'>"
                         + "<button class='del-favs-btn' title='Remove from Favorites'><i class='fas fa-times'></i></button>"
-                        + "<img src='" + favsArr[i].image + "'>"
+                        + "<img src='" + favsArr[favsArr.length - 1].image + "'>"
                         + "</div>"
-                        + "<header class='char-header'>" + favsArr[i].name + "</header>"
-                        + "<p><span>Ancestry: </span>" + favsArr[i].ancestry + "</p>"
-                        + "<p><span>House: </span>" + favsArr[i].house + "</p>"
-                        + "<p><span>Actor/Actress: </span>" + favsArr[i].actor + "</p>"
+                        + "<header class='char-header'>" + favsArr[favsArr.length - 1].name + "</header>"
+                        + "<p><span>Ancestry: </span>" + favsArr[favsArr.length - 1].ancestry + "</p>"
+                        + "<p><span>House: </span>" + favsArr[favsArr.length - 1].house + "</p>"
+                        + "<p><span>Actor/Actress: </span>" + favsArr[favsArr.length - 1].actor + "</p>"
                     + "</div>"
+                    break;
                 }
+                break;
             }
         });
+    }
 }
 addToFavs();
 
