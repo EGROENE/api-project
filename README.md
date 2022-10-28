@@ -1,6 +1,8 @@
 ﻿# api-project
 This is a project I'm working on for the Devslopes Academy. We are to implement an API using only HTML, CSS, & vanilla JavaScript. I will update this document further as I make progress.
 
+I will be using only what I know at this point in time to accomplish the following objectives.
+
 Here are the project requirements:
 1. Fetch data from an API (resource provided below) and display up to 30 items from that request in your HTML.<br>
 - In your HTML you will display the array of data you get back (i.e. if it was an array of movies, you would display the list of movies). <br>
