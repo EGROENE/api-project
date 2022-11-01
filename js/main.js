@@ -76,9 +76,24 @@ async function addToFavs() {
         favBtn.addEventListener('click', function() {
             console.log(favBtns.indexOf(favBtn));
             console.log(favBtns.indexOf(favBtn) + 1);
-            for (let i = favBtns.indexOf(favBtn); i < (favBtns.indexOf(favBtn) + 1); i++) { // after returning all data-names, put contents of this loop into a function. Then, depending on the position of data-name in alldatanames, call a different for loop w/ same function containing this loop's contents.
+            // OCT 28- problem has something to do with assigning i to index of favBtn in favBtns
+            // i should equal the index of the item in the current version of newCharsArr
+            // may be necessary to get items by data-name & use a parent selector
+            // splicing i from favBtns works, now just make sure .invisible is applied correctly
+            for (let i = favBtns.indexOf(favBtn); i < (favBtns.indexOf(favBtn) + 1); i++) {
+                // Remove favBtn from favBtns:
+                favBtns.splice(i, 1);
+                console.log(favBtns);
+                
                 // Make charCard invisible:
                 charCards[i].classList.add('invisible');
+                let invisibleCards = document.getElementsByClassName('invisible');
+                console.log(invisibleCards.length);
+                console.log(i);
+                charCards = Array.from(charCards);
+                charCards.splice(i, 1);
+                console.log(charCards[i]);
+                console.log(charCards.indexOf(i));
                 
                 // push item from api into favsArr, not its HTML elem, as this will be built w/o .invisible in separate function:
                 //favsArr.push(charCards[i]);
@@ -93,6 +108,7 @@ async function addToFavs() {
                 newCharsArr.splice(i, 1); // first value here should equal init value of i in for loop
                 console.log(newCharsArr);
                 console.log(newCharsArr.length);
+
                 
                 // Add items in favsArr to favs modal. favsArr needs to be accessed:
                 const favsModalBody = document.getElementById('favs-modal-body');
