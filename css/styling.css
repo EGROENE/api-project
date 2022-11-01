@@ -23,7 +23,8 @@ body {
 /* Declare Potterfont font */
 @font-face { font-family: Potterfont; src: url('../assets/font/HarryP-MVZ6w.ttf'); } 
 
-#pg-header-container {
+#pg-header-container,
+#modal-header-container {
     background: rgba(0, 0, 0, 0.8);
     padding: var(--size-12);
 }
@@ -44,7 +45,8 @@ h1 {
     letter-spacing: var(--size-8);
 }
 
-h2 {
+h2,
+.modal-header {
     color: white;
     font-size: var(--size-28);
     letter-spacing: 0.25rem;
@@ -118,6 +120,7 @@ h2:hover {
 /* MODAL STYLING */
 .page-block {
     background-color: rebeccapurple;
+    background: url(../assets/page-bg3.jpg);
 }
 
 .modal {
@@ -160,8 +163,9 @@ h2:hover {
     justify-content: space-between;
 }
 
-.modal-dialog .modal-header h3 {
+.modal-header h3 {
     color: var(--color-text-base);
+    font-family: 'Potterfont', serif;
 }
 
 .modal-header .fa-times {
