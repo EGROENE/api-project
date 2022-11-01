@@ -51,13 +51,6 @@ async function addToFavs() {
     const newCharsArr = await getChars();
     let charCards = document.querySelectorAll('.char-card');
     console.log(charCards[0]);
-    /* const remAllAddFavs = () => {
-        for (let i = 1; i < 5; i++) {
-            newCharsArr.splice(newCharsArr[i], 1);
-            favsArr.push(charCards[i]);
-            charCards[i].classList.add('invisible');
-        }
-    } */
     console.log(favsArr);
     console.log(newCharsArr);
 
@@ -72,10 +65,6 @@ async function addToFavs() {
         favBtn.addEventListener('click', function() {
             console.log(favBtns.indexOf(favBtn));
             console.log(favBtns.indexOf(favBtn) + 1);
-            // OCT 28- problem has something to do with assigning i to index of favBtn in favBtns
-            // i should equal the index of the item in the current version of newCharsArr
-            // may be necessary to get items by data-name & use a parent selector
-            // splicing i from favBtns works, now just make sure .invisible is applied correctly
             for (let i = favBtns.indexOf(favBtn); i < (favBtns.indexOf(favBtn) + 1); i++) {
                 // Remove favBtn from favBtns:
                 favBtns.splice(i, 1);
@@ -92,10 +81,6 @@ async function addToFavs() {
                 console.log(charCards.indexOf(i));
                 
                 // push item from api into favsArr, not its HTML elem, as this will be built w/o .invisible in separate function:
-                //favsArr.push(charCards[i]);
-                /* if (!favsArr.includes(newCharsArr[i])) {
-                    favsArr.push(newCharsArr[i]);
-                } */
                 favsArr.push(newCharsArr[i]);
                 console.log(favsArr);
                 console.log(favsArr[0]);
@@ -120,9 +105,7 @@ async function addToFavs() {
                         + "<p><span>House: </span>" + favsArr[favsArr.length - 1].house + "</p>"
                         + "<p><span>Actor/Actress: </span>" + favsArr[favsArr.length - 1].actor + "</p>"
                     + "</div>"
-                    break;
                 }
-                break;
             }
         });
     }
