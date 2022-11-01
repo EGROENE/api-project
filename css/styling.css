@@ -74,11 +74,13 @@ h2:hover {
     text-align: center;
 }
 
-.favs-btn {
+.favs-btn,
+.del-favs-btn {
     position: absolute;
 }
 
-.favs-btn:hover {
+.favs-btn:hover,
+.del-favs-btn:hover {
     cursor: pointer;
 }
 
