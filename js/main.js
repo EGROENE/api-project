@@ -116,6 +116,8 @@ favsFunctionality();
 // Run on click of remove from favs btn (event listener)
 
 // FAV MODAL JS
+const modalOpen = '[data-open]';
+const modalClose = '[data-close]';
 const isVisible = 'is-visible';
 const openModal = document.querySelectorAll(modalOpen);
 const closeModal = document.querySelectorAll(modalClose);
@@ -128,12 +130,6 @@ for (const elem of openModal) {
 }
 
 // Remove isVisible class from elements in HTML with data-close attribute upon click:
-/* for (const elem of closeModal) {
-    elem.addEventListener('click', function() {
-        this.parentElement.parentElement.parentElement.parentElement.classList.remove(isVisible);
-    })
-} */
-
 for (const elem of closeModal) {
     elem.addEventListener('click', function() {
         document.getElementById('favs').classList.remove(isVisible);
