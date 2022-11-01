@@ -59,7 +59,7 @@ async function favsFunctionality() {
     favBtns = Array.from(favBtns);
     console.log(favBtns);
 
-    // Add EL to every favBtn:
+    // Add EL to every favBtn to del from homepage & add to favs modal:
     for (let favBtn of favBtns) {
         // logic below is good, just figure out how to configure it with any given card
         favBtn.addEventListener('click', function() {
