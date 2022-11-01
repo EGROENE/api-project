@@ -46,7 +46,7 @@ async function buildPage() {
 // Func to add to favs array, delete from allCharsArr:
 // Maybe need another async function
 let favsArr = [];
-async function addToFavs() {
+async function favsFunctionality() {
     await buildPage();
     const newCharsArr = await getChars();
     let charCards = document.querySelectorAll('.char-card');
@@ -110,7 +110,7 @@ async function addToFavs() {
         });
     }
 }
-addToFavs();
+favsFunctionality();
 
 // Func to delete from favs, re-add to 'all':
 // Run on click of remove from favs btn (event listener)
