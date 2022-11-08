@@ -69,7 +69,8 @@ h2:hover {
     margin: var(--size-20) var(--size-20);
 }
 
-.char-card {
+.char-card,
+.fav-char-card {
     color: white;
     background: rgba(0, 0, 0, 0.8);
     padding: var(--size-20);
@@ -86,12 +87,14 @@ h2:hover {
     cursor: pointer;
 }
 
-.char-card header {
+.char-card header,
+.fav-char-card header {
     font-size: var(--size-32);
     color: var(--hp-gold);
 }
 
-.char-card p {
+.char-card p,
+.fav-char-card p {
     font-size: var(--size-24);
 }
 
@@ -99,7 +102,8 @@ h2:hover {
     max-width: 100%;
 }
 
-.char-card.invisible {
+.char-card.invisible,
+.fav-char-card.invisible {
     display: none;
 }
 
@@ -227,4 +231,5 @@ h2:hover {
 [data-animation="zoomInOut"].full-site-modal.is-visible,
 [data-animation="slideInOutTop"].is-visible .modal-dialog {
     transform: none;
+    overflow-y: auto;
 }
