@@ -24,14 +24,28 @@ async function getChars() {
 }
 
 // Access newCharsArr outside of async function to populate homepage:
-async function buildPage() {
+async function buildPages() {
     const newCharsArr = await getChars();
     // Populate char cards' HTML:
     for (let i = 0; i < newCharsArr.length; i++) {
+        // Populate homepage (make cards visible by default)
         charsSection.innerHTML += 
             "<div class='char-card' data-name='" + newCharsArr[i].name.toLowerCase().replace(/\s/g, '-') + "'>" 
                 + "<div class='char-img-container'>"
                 + "<button class='favs-btn' title='Add to Favorites'><i class='far fa-heart'></i></button>"
+                + "<img src='" + newCharsArr[i].image + "'>"
+                + "</div>"
+                + "<header class='char-header'>" + newCharsArr[i].name + "</header>"
+                + "<p><span>Ancestry: </span>" + newCharsArr[i].ancestry + "</p>"
+                + "<p><span>House: </span>" + newCharsArr[i].house + "</p>"
+                + "<p><span>Actor/Actress: </span>" + newCharsArr[i].actor + "</p>"
+            + "</div>"
+        // Populate favs modal (make cards invisible by default):
+        const favsModalBody = document.getElementById('favs-modal-body');
+        favsModalBody.innerHTML += 
+            "<div class='fav-char-card invisible' data-name='" + newCharsArr[i].name.toLowerCase().replace(/\s/g, '-') + "'>" 
+                + "<div class='char-img-container'>"
+                + "<button class='del-favs-btn' title='Remove from Favorites'><i class='fas fa-times'></i></button>"
                 + "<img src='" + newCharsArr[i].image + "'>"
                 + "</div>"
                 + "<header class='char-header'>" + newCharsArr[i].name + "</header>"
@@ -47,67 +61,39 @@ async function buildPage() {
 // Maybe need another async function
 let favsArr = [];
 async function favsFunctionality() {
-    await buildPage();
+    await buildPages();
     const newCharsArr = await getChars();
+    
     let charCards = document.querySelectorAll('.char-card');
-    console.log(charCards[0]);
-    console.log(favsArr);
-    console.log(newCharsArr);
+    charCards = Array.from(charCards);
+    let favCharCards = document.querySelectorAll('.fav-char-card');
+    favCharCards = Array.from(favCharCards);
 
-    // Get all items with data-name:
+    // Add EL to every favBtn to make card invisible on homepage & make visible on favs modal:
     let favBtns = document.querySelectorAll('.favs-btn');
     favBtns = Array.from(favBtns);
-    console.log(favBtns);
-
-    // Add EL to every favBtn to del from homepage & add to favs modal:
     for (let favBtn of favBtns) {
-        // logic below is good, just figure out how to configure it with any given card
         favBtn.addEventListener('click', function() {
-            console.log(favBtns.indexOf(favBtn));
-            console.log(favBtns.indexOf(favBtn) + 1);
-            for (let i = favBtns.indexOf(favBtn); i < (favBtns.indexOf(favBtn) + 1); i++) {
-                // Remove favBtn from favBtns:
-                favBtns.splice(i, 1);
-                console.log(favBtns);
-                
-                // Make charCard invisible:
+            for (let i = favBtns.indexOf(favBtn); i < favBtns.indexOf(favBtn) + 1; i++) {
+                // Make card on homepage invisible:
                 charCards[i].classList.add('invisible');
-                let invisibleCards = document.getElementsByClassName('invisible');
-                console.log(invisibleCards.length);
-                console.log(i);
-                charCards = Array.from(charCards);
-                charCards.splice(i, 1);
-                console.log(charCards[i]);
-                console.log(charCards.indexOf(i));
-                
-                // push item from api into favsArr, not its HTML elem, as this will be built w/o .invisible in separate function:
-                favsArr.push(newCharsArr[i]);
-                console.log(favsArr);
-                console.log(favsArr[0]);
-
-                // Remove item from newCharsArr:
-                newCharsArr.splice(i, 1); // first value here should equal init value of i in for loop
-                console.log(newCharsArr);
-                console.log(newCharsArr.length);
-
-                
-                // Add items in favsArr to favs modal. favsArr needs to be accessed:
-                const favsModalBody = document.getElementById('favs-modal-body');
-                for (let i = favBtns.indexOf(favBtn); i < (favBtns.indexOf(favBtn) + 1); i++) {
-                    favsModalBody.innerHTML += 
-                    "<div class='char-card' data-name='" + favsArr[favsArr.length - 1].name.toLowerCase().replace(/\s/g, '-') + "'>" 
-                        + "<div class='char-img-container'>"
-                        + "<button class='del-favs-btn' title='Remove from Favorites'><i class='fas fa-times'></i></button>"
-                        + "<img src='" + favsArr[favsArr.length - 1].image + "'>"
-                        + "</div>"
-                        + "<header class='char-header'>" + favsArr[favsArr.length - 1].name + "</header>"
-                        + "<p><span>Ancestry: </span>" + favsArr[favsArr.length - 1].ancestry + "</p>"
-                        + "<p><span>House: </span>" + favsArr[favsArr.length - 1].house + "</p>"
-                        + "<p><span>Actor/Actress: </span>" + favsArr[favsArr.length - 1].actor + "</p>"
-                    + "</div>"
-                }
+                // Make card on favs visible:
+                favCharCards[i].classList.remove('invisible');
             }
         });
+    }
+    // Add EL to every delFavBtn to make invisible on favs modal & make card reappear on homepage:
+    let delFavBtns = document.querySelectorAll('.del-favs-btn');
+    delFavBtns = Array.from(delFavBtns);
+    for (let delFavBtn of delFavBtns) {
+        delFavBtn.addEventListener('click', function() {
+            for (let i = delFavBtns.indexOf(delFavBtn); i < delFavBtns.indexOf(delFavBtn) + 1; i++) {
+                // Make card on favs modal invisible again:
+                charCards[i].classList.remove('invisible');
+                // Make card reappear on homepage:
+                favCharCards[i].classList.add('invisible');
+            }
+        })
     }
 }
 favsFunctionality();
