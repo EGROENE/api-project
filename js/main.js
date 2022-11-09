@@ -149,6 +149,42 @@ revAlphaSortBtnHomepage.addEventListener('click', async function() {
 });
 
 // Add sort/reverse functions to corresponding btns (favs):
+const alphaSortBtnFavs = document.getElementById('alphabetical-sort-favs');
+const revAlphaSortBtnFavs = document.getElementById('reverse-alphabetical-sort-favs');
+
+alphaSortBtnFavs.addEventListener('click', function() {
+    let favCharCards = document.querySelectorAll('#favs-modal-body .fav-char-card');
+    favCharCards = Array.from(favCharCards);
+    favCharCards.sort(function(a, b) {
+        if ( a.dataset.name < b.dataset.name ){
+            return -1;
+          }
+        if ( a.dataset.name > b.dataset.name ){
+            return 1;
+        }
+        return 0;
+    })
+    // 'Repopulate' favs modal with sorted cards:
+    let favsCardContainer = document.getElementById('favs-modal-body');
+    favCharCards.forEach(elem => {favsCardContainer.appendChild(elem)});
+})
+
+revAlphaSortBtnFavs.addEventListener('click', function() {
+    let favCharCards = document.querySelectorAll('#favs-modal-body .fav-char-card');
+    favCharCards = Array.from(favCharCards);
+    favCharCards.sort(function(a, b) {
+        if ( b.dataset.name < a.dataset.name ){
+            return -1;
+          }
+        if ( b.dataset.name > a.dataset.name ){
+            return 1;
+        }
+        return 0;
+    })
+    // 'Repopulate' favs modal with sorted cards:
+    let favsCardContainer = document.getElementById('favs-modal-body');
+    favCharCards.forEach(elem => {favsCardContainer.appendChild(elem)});
+})
 
 
 // FAV MODAL JS
