@@ -81,6 +81,13 @@ h2:hover {
     cursor: pointer;
 }
 
+.sort-btn:disabled {
+    cursor: auto;
+    color: rgb(78, 78, 78);
+    background-color: black;
+    border: 2px solid transparent;
+}
+
 #chars-container,
 #favs-modal-body {
     display: grid;
