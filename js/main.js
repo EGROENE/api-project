@@ -6,11 +6,6 @@ async function getChars() {
     const response = await fetch(charsURL);
     console.log(response.ok);
     const allCharsArr = await response.json();
-    // A-Z by name:
-    console.log(allCharsArr[0].name)
-    allCharsArr.sort((a, b) => {
-        return a.name - b.name;
-    })
     
     // Push into newCharsArr all characters that are human & contain an image URL:
     let newCharsArr = [];
@@ -59,7 +54,6 @@ async function buildPages() {
 
 // Func to add to favs array, delete from allCharsArr:
 // Maybe need another async function
-let favsArr = [];
 async function favsFunctionality() {
     await buildPages();
     const newCharsArr = await getChars();
@@ -98,8 +92,64 @@ async function favsFunctionality() {
 }
 favsFunctionality();
 
-// Func to delete from favs, re-add to 'all':
-// Run on click of remove from favs btn (event listener)
+// Functionality to sort alphabetically & reverse-alphabetically:
+// May need to await getChars() to access allCharsArr
+// Define async func to be called in EL to the sort btns:
+const alphaSort = document.getElementById('alphabetical-sort');
+const revAlphaSort = document.getElementById('reverse-alphabetical-sort');
+
+/* async function sortAlpha() {
+    let charsArr = await getChars();
+    console.log('ji')
+    charsArr.sort(function(a, b) {
+        a = charsArr.name;
+        b = charsArr.name;
+        return (a < b) ? -1 : (a > b) ? 1 : 0;
+    })
+} */
+
+// Add sort/reverse functions to corresponding btns (homepage):
+const alphaSortBtnHomepage = document.getElementById('alphabetical-sort-home');
+const revAlphaSortBtnHomepage = document.getElementById('reverse-alphabetical-sort-home');
+
+alphaSortBtnHomepage.addEventListener('click', async function() {
+    await getChars();
+    let charCards = document.querySelectorAll('#chars-container .char-card');
+    charCards = Array.from(charCards);
+    charCards.sort(function(a, b) {
+        if ( a.dataset.name < b.dataset.name ){
+            return -1;
+          }
+        if ( a.dataset.name > b.dataset.name ){
+            return 1;
+        }
+        return 0;
+    })
+    // 'Repopulate' homepage with sorted cards:
+    let homepageCardContainer = document.getElementById('chars-container');
+    charCards.forEach(elem => {homepageCardContainer.appendChild(elem)});
+});
+
+revAlphaSortBtnHomepage.addEventListener('click', async function() {
+    await getChars();
+    let charCards = document.querySelectorAll('#chars-container .char-card');
+    charCards = Array.from(charCards);
+    charCards.sort(function(a, b) {
+        if ( b.dataset.name < a.dataset.name ){
+            return -1;
+          }
+        if ( b.dataset.name > a.dataset.name ){
+            return 1;
+        }
+        return 0;
+    })
+    // 'Repopulate' homepage with reverse-sorted cards:
+    let homepageCardContainer = document.getElementById('chars-container');
+    charCards.forEach(elem => {homepageCardContainer.appendChild(elem)});
+});
+
+// Add sort/reverse functions to corresponding btns (favs):
+
 
 // FAV MODAL JS
 const modalOpen = '[data-open]';
