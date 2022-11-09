@@ -56,7 +56,7 @@ h2,
 
 h2:hover {
     cursor: pointer;
-    color: forestgreen;
+    color: purple;
     transition: 700ms;
 }
 
