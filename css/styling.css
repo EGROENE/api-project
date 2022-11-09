@@ -60,6 +60,12 @@ h2:hover {
     transition: 700ms;
 }
 
+.sort-btns-container-homepage {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 .sort-btn {
     font-size: var(--size-24);
     padding: var(--size-16);
