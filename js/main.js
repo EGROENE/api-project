@@ -50,7 +50,6 @@ async function buildPages() {
             + "</div>"
     }
 }
-//buildPage();
 
 // Func to add to favs array, delete from allCharsArr:
 // Maybe need another async function
@@ -97,16 +96,6 @@ favsFunctionality();
 // Define async func to be called in EL to the sort btns:
 const alphaSort = document.getElementById('alphabetical-sort');
 const revAlphaSort = document.getElementById('reverse-alphabetical-sort');
-
-/* async function sortAlpha() {
-    let charsArr = await getChars();
-    console.log('ji')
-    charsArr.sort(function(a, b) {
-        a = charsArr.name;
-        b = charsArr.name;
-        return (a < b) ? -1 : (a > b) ? 1 : 0;
-    })
-} */
 
 // Add sort/reverse functions to corresponding btns (homepage):
 let alphaSortBtnHomepage = document.getElementById('alphabetical-sort-home');
