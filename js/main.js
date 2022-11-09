@@ -109,11 +109,14 @@ const revAlphaSort = document.getElementById('reverse-alphabetical-sort');
 } */
 
 // Add sort/reverse functions to corresponding btns (homepage):
-const alphaSortBtnHomepage = document.getElementById('alphabetical-sort-home');
-const revAlphaSortBtnHomepage = document.getElementById('reverse-alphabetical-sort-home');
+let alphaSortBtnHomepage = document.getElementById('alphabetical-sort-home');
+let revAlphaSortBtnHomepage = document.getElementById('reverse-alphabetical-sort-home');
 
 alphaSortBtnHomepage.addEventListener('click', async function() {
     await getChars();
+    //document.getElementById('alphabetical-sort-home').disabled = true;
+    alphaSortBtnHomepage.disabled = true;
+    revAlphaSortBtnHomepage.disabled = false;
     let charCards = document.querySelectorAll('#chars-container .char-card');
     charCards = Array.from(charCards);
     charCards.sort(function(a, b) {
@@ -132,6 +135,8 @@ alphaSortBtnHomepage.addEventListener('click', async function() {
 
 revAlphaSortBtnHomepage.addEventListener('click', async function() {
     await getChars();
+    alphaSortBtnHomepage.disabled = false;
+    revAlphaSortBtnHomepage.disabled = true;
     let charCards = document.querySelectorAll('#chars-container .char-card');
     charCards = Array.from(charCards);
     charCards.sort(function(a, b) {
@@ -153,6 +158,8 @@ const alphaSortBtnFavs = document.getElementById('alphabetical-sort-favs');
 const revAlphaSortBtnFavs = document.getElementById('reverse-alphabetical-sort-favs');
 
 alphaSortBtnFavs.addEventListener('click', function() {
+    alphaSortBtnFavs.disabled = true;
+    revAlphaSortBtnFavs.disabled = false;
     let favCharCards = document.querySelectorAll('#favs-modal-body .fav-char-card');
     favCharCards = Array.from(favCharCards);
     favCharCards.sort(function(a, b) {
@@ -170,6 +177,8 @@ alphaSortBtnFavs.addEventListener('click', function() {
 })
 
 revAlphaSortBtnFavs.addEventListener('click', function() {
+    alphaSortBtnFavs.disabled = false;
+    revAlphaSortBtnFavs.disabled = true;
     let favCharCards = document.querySelectorAll('#favs-modal-body .fav-char-card');
     favCharCards = Array.from(favCharCards);
     favCharCards.sort(function(a, b) {
