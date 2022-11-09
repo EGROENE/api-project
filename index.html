@@ -20,8 +20,8 @@
             <h1>Harry Potter Characters</h1>
             <h2 data-open="favs">My Favorites</h2>
             <div class="sort-btns-container">
-                <button id="alphabetical-sort-home">A-Z</button>
-                <button id="reverse-alphabetical-sort-home">Z-A</button>
+                <button class="sort-btn" id="alphabetical-sort-home">A-Z</button>
+                <button class="sort-btn" id="reverse-alphabetical-sort-home">Z-A</button>
             </div>
         </div>
         <main>
@@ -30,10 +30,12 @@
                 <div class="container-fluid">
                     <div id="modal-header-container">
                         <header class="modal-header">
-                            <h3>Favorites</h3>
-                            <div class="sort-btns-container-favs">
-                                <button id="alphabetical-sort-favs">A-Z</button>
-                                <button id="reverse-alphabetical-sort-favs">Z-A</button>
+                            <div class="header-sort-btns-container">
+                                <h3>Favorites</h3>
+                                <div class="sort-btns-container-favs">
+                                    <button class="sort-btn" id="alphabetical-sort-favs">A-Z</button>
+                                    <button class="sort-btn" id="reverse-alphabetical-sort-favs">Z-A</button>
+                                </div>
                             </div>
                             <i class="fas fa-times" data-close></i>
                         </header>
