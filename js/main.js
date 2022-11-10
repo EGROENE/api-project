@@ -138,7 +138,7 @@ favsFunctionality();
 const alphaSort = document.getElementById('alphabetical-sort');
 const revAlphaSort = document.getElementById('reverse-alphabetical-sort');
 
-// Add sort/reverse functions to corresponding btns (homepage):
+// Assign btns to sort homepage chars to shorter vars:
 let alphaSortBtnHomepage = document.getElementById('alphabetical-sort-home');
 let revAlphaSortBtnHomepage = document.getElementById('reverse-alphabetical-sort-home');
 
@@ -184,9 +184,9 @@ revAlphaSortBtnHomepage.addEventListener('click', async function() {
     charCards.forEach(elem => {homepageCardContainer.appendChild(elem)});
 });
 
-// Add sort/reverse functions to corresponding btns (favs):
-const alphaSortBtnFavs = document.getElementById('alphabetical-sort-favs');
-const revAlphaSortBtnFavs = document.getElementById('reverse-alphabetical-sort-favs');
+// Assign btns to sort fav chars to shorter vars:
+let alphaSortBtnFavs = document.getElementById('alphabetical-sort-favs');
+let revAlphaSortBtnFavs = document.getElementById('reverse-alphabetical-sort-favs');
 
 // Sort characters in fav modal alphabetically:
 alphaSortBtnFavs.addEventListener('click', function() {
