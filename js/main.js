@@ -4,7 +4,6 @@ const charsURL = 'https://hp-api.herokuapp.com/api/characters';
 // Get characters from API:
 async function getChars() {
     const response = await fetch(charsURL);
-    console.log(response.ok);
     const allCharsArr = await response.json();
     
     // Push into newCharsArr all characters that are human & contain an image URL:
@@ -14,7 +13,6 @@ async function getChars() {
             newCharsArr.push(allCharsArr[i]);
         }
     }
-    console.log(newCharsArr);
     return newCharsArr;
 }
 
@@ -29,7 +27,7 @@ const displayGryffindorTotalHomepage = () => {
 
 // Define function to display total Gryffindor chars in favs:
 
-// Access newCharsArr outside of async function to populate homepage:
+// Function to populate homepage, fav modal with specified items from API:
 async function buildPages() {
     const newCharsArr = await getChars();
     // Populate char cards' HTML:
@@ -62,10 +60,9 @@ async function buildPages() {
                 + "<p><span>Actor/Actress: </span>" + newCharsArr[i].actor + "</p>"
             + "</div>"
     }
-    // Tally number of chars in house Gryffindor:
+    // Tally number of chars in house Gryffindor upon fetching & displaying of specified API items (basically, upon pageload):
     for (char of newCharsArr) {
         if (char.house.toLowerCase() === 'gryffindor') {
-            //gryffindorChars.push(char);
             gryffindorCharsTotalHomepage += 1;
         }
     }
@@ -73,8 +70,7 @@ async function buildPages() {
     console.log(gryffindorCharsTotalHomepage);
 }
 
-// Func to add to favs array, delete from allCharsArr:
-// Maybe need another async function
+// Function to make characters appear/disappear from homepage & favs modal upon clicking of corresponding buttons:
 async function favsFunctionality() {
     await buildPages();
     const newCharsArr = await getChars();
@@ -139,8 +135,6 @@ async function favsFunctionality() {
 favsFunctionality();
 
 // Functionality to sort alphabetically & reverse-alphabetically:
-// May need to await getChars() to access allCharsArr
-// Define async func to be called in EL to the sort btns:
 const alphaSort = document.getElementById('alphabetical-sort');
 const revAlphaSort = document.getElementById('reverse-alphabetical-sort');
 
@@ -148,9 +142,9 @@ const revAlphaSort = document.getElementById('reverse-alphabetical-sort');
 let alphaSortBtnHomepage = document.getElementById('alphabetical-sort-home');
 let revAlphaSortBtnHomepage = document.getElementById('reverse-alphabetical-sort-home');
 
+// Sort homepage characters alphabetically:
 alphaSortBtnHomepage.addEventListener('click', async function() {
     await getChars();
-    //document.getElementById('alphabetical-sort-home').disabled = true;
     alphaSortBtnHomepage.disabled = true;
     revAlphaSortBtnHomepage.disabled = false;
     let charCards = document.querySelectorAll('#chars-container .char-card');
@@ -169,6 +163,7 @@ alphaSortBtnHomepage.addEventListener('click', async function() {
     charCards.forEach(elem => {homepageCardContainer.appendChild(elem)});
 });
 
+// Sort homepage characters reverse-alphabetically:
 revAlphaSortBtnHomepage.addEventListener('click', async function() {
     await getChars();
     alphaSortBtnHomepage.disabled = false;
@@ -193,6 +188,7 @@ revAlphaSortBtnHomepage.addEventListener('click', async function() {
 const alphaSortBtnFavs = document.getElementById('alphabetical-sort-favs');
 const revAlphaSortBtnFavs = document.getElementById('reverse-alphabetical-sort-favs');
 
+// Sort characters in fav modal alphabetically:
 alphaSortBtnFavs.addEventListener('click', function() {
     alphaSortBtnFavs.disabled = true;
     revAlphaSortBtnFavs.disabled = false;
@@ -212,6 +208,7 @@ alphaSortBtnFavs.addEventListener('click', function() {
     favCharCards.forEach(elem => {favsCardContainer.appendChild(elem)});
 })
 
+// Sort characters in fav modal reverse-alphabetically:
 revAlphaSortBtnFavs.addEventListener('click', function() {
     alphaSortBtnFavs.disabled = false;
     revAlphaSortBtnFavs.disabled = true;
