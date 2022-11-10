@@ -24,7 +24,8 @@ body {
 @font-face { font-family: Potterfont; src: url('../assets/font/HarryP-MVZ6w.ttf'); } 
 
 #pg-header-container,
-#modal-header-container {
+#modal-header-container,
+#totals-section-homepage {
     background: rgba(0, 0, 0, 0.8);
     padding: var(--size-12);
 }
@@ -147,6 +148,16 @@ h2:hover {
     width: 100%;
     max-width: 100%;
     height: 376px;
+}
+
+#totals-section-homepage {
+    color: white;
+    font-family: 'Potterfont', serif;
+    font-size: var(--size-32);
+}
+
+#totals-section-homepage span {
+    color: var(--hp-gold);
 }
 
 /* MODAL STYLING */
