@@ -112,7 +112,7 @@ async function favsFunctionality() {
     for (let delFavBtn of delFavBtns) {
         delFavBtn.addEventListener('click', function() {
             for (let i = delFavBtns.indexOf(delFavBtn); i < delFavBtns.indexOf(delFavBtn) + 1; i++) {
-                // If house Gryffindor, add 1 from counter on homepage:
+                // If house Gryffindor, add 1 to counter on homepage:
                 // get parent of #house-homepage (don't get by ID)
                 let houseHeader = charCards[i].querySelector('#house-homepage');
                 let houseHeaderParent = houseHeader.parentElement;
