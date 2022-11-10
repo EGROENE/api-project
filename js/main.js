@@ -18,6 +18,17 @@ async function getChars() {
     return newCharsArr;
 }
 
+// Initialize vars to tally number of Gryffindor chars on homepage, favs modal:
+let gryffindorCharsTotalHomepage = 0;
+let gryffindorCharsTotalFavs = 0;
+
+// Define function to display total Gryffindor chars on homepage:
+const displayGryffindorTotalHomepage = () => {
+    document.getElementById('total-gryffindor-homepage').innerHTML = gryffindorCharsTotalHomepage
+}
+
+// Define function to display total Gryffindor chars in favs:
+
 // Access newCharsArr outside of async function to populate homepage:
 async function buildPages() {
     const newCharsArr = await getChars();
@@ -25,30 +36,41 @@ async function buildPages() {
     for (let i = 0; i < newCharsArr.length; i++) {
         // Populate homepage (make cards visible by default)
         charsSection.innerHTML += 
-            "<div class='char-card' data-name='" + newCharsArr[i].name.toLowerCase().replace(/\s/g, '-') + "'>" 
+            "<div class='char-card' data-name='" + newCharsArr[i].name.toLowerCase().replace(/\s/g, '-') + "' data-house='"
+            + newCharsArr[i].house.toLowerCase().replace(/\s/g, '-') + "'>" 
                 + "<div class='char-img-container'>"
                 + "<button class='favs-btn' title='Add to Favorites'><i class='far fa-heart'></i></button>"
                 + "<img src='" + newCharsArr[i].image + "'>"
                 + "</div>"
                 + "<header class='char-header'>" + newCharsArr[i].name + "</header>"
                 + "<p><span>Ancestry: </span>" + newCharsArr[i].ancestry + "</p>"
-                + "<p><span>House: </span>" + newCharsArr[i].house + "</p>"
+                + "<p id='house-homepage'><span>House: </span>" + newCharsArr[i].house + "</p>"
                 + "<p><span>Actor/Actress: </span>" + newCharsArr[i].actor + "</p>"
             + "</div>"
         // Populate favs modal (make cards invisible by default):
         const favsModalBody = document.getElementById('favs-modal-body');
         favsModalBody.innerHTML += 
-            "<div class='fav-char-card invisible' data-name='" + newCharsArr[i].name.toLowerCase().replace(/\s/g, '-') + "'>" 
+            "<div class='fav-char-card invisible' data-name='" + newCharsArr[i].name.toLowerCase().replace(/\s/g, '-') + "' data-house='"
+                + newCharsArr[i].house.toLowerCase().replace(/\s/g, '-') + "'>" 
                 + "<div class='char-img-container'>"
                 + "<button class='del-favs-btn' title='Remove from Favorites'><i class='fas fa-times'></i></button>"
                 + "<img src='" + newCharsArr[i].image + "'>"
                 + "</div>"
                 + "<header class='char-header'>" + newCharsArr[i].name + "</header>"
                 + "<p><span>Ancestry: </span>" + newCharsArr[i].ancestry + "</p>"
-                + "<p><span>House: </span>" + newCharsArr[i].house + "</p>"
+                + "<p id='house-favs'><span>House: </span>" + newCharsArr[i].house + "</p>"
                 + "<p><span>Actor/Actress: </span>" + newCharsArr[i].actor + "</p>"
             + "</div>"
     }
+    // Tally number of chars in house Gryffindor:
+    for (char of newCharsArr) {
+        if (char.house.toLowerCase() === 'gryffindor') {
+            //gryffindorChars.push(char);
+            gryffindorCharsTotalHomepage += 1;
+        }
+    }
+    displayGryffindorTotalHomepage();
+    console.log(gryffindorCharsTotalHomepage);
 }
 
 // Func to add to favs array, delete from allCharsArr:
@@ -59,6 +81,7 @@ async function favsFunctionality() {
     
     let charCards = document.querySelectorAll('.char-card');
     charCards = Array.from(charCards);
+
     let favCharCards = document.querySelectorAll('.fav-char-card');
     favCharCards = Array.from(favCharCards);
 
@@ -68,6 +91,18 @@ async function favsFunctionality() {
     for (let favBtn of favBtns) {
         favBtn.addEventListener('click', function() {
             for (let i = favBtns.indexOf(favBtn); i < favBtns.indexOf(favBtn) + 1; i++) {
+                // If house Gryffindor, subtract 1 from counter on homepage:
+                // get parent of #house-homepage (don't get by ID)
+                let houseHeader = charCards[i].querySelector('#house-homepage');
+                let houseHeaderParent = houseHeader.parentElement;
+                console.log(houseHeaderParent);
+                console.log(houseHeaderParent.dataset.house);
+                // if parent dataset.house === 'gryffindor', subtract 1 from counter
+                if (houseHeaderParent.dataset.house === 'gryffindor') {
+                    gryffindorCharsTotalHomepage -= 1;
+                }
+                console.log(gryffindorCharsTotalHomepage);
+                displayGryffindorTotalHomepage();
                 // Make card on homepage invisible:
                 charCards[i].classList.add('invisible');
                 // Make card on favs visible:
@@ -81,6 +116,18 @@ async function favsFunctionality() {
     for (let delFavBtn of delFavBtns) {
         delFavBtn.addEventListener('click', function() {
             for (let i = delFavBtns.indexOf(delFavBtn); i < delFavBtns.indexOf(delFavBtn) + 1; i++) {
+                // If house Gryffindor, add 1 from counter on homepage:
+                // get parent of #house-homepage (don't get by ID)
+                let houseHeader = charCards[i].querySelector('#house-homepage');
+                let houseHeaderParent = houseHeader.parentElement;
+                console.log(houseHeaderParent);
+                console.log(houseHeaderParent.dataset.house);
+                // if parent dataset.house === 'gryffindor', subtract 1 from counter
+                if (houseHeaderParent.dataset.house === 'gryffindor') {
+                    gryffindorCharsTotalHomepage += 1;
+                }
+                console.log(gryffindorCharsTotalHomepage);
+                displayGryffindorTotalHomepage();
                 // Make card on favs modal invisible again:
                 charCards[i].classList.remove('invisible');
                 // Make card reappear on homepage:
