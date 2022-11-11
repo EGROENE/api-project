@@ -157,13 +157,15 @@ h2:hover {
 }
 
 #totals-section-homepage {
-    background: rgb(114, 114, 114);
+    background: rgb(243, 243, 243);
     font-family: 'Potterfont', serif;
-    font-size: var(--size-32);
-    padding: var(--size-12);
+    font-size: var(--size-48);
+    padding: var(--size-24) 0px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    position: sticky;
+    bottom: var(--size-8);
 }
 
 #total-gryffindor-homepage-header {
