@@ -140,8 +140,6 @@ async function favsFunctionality() {
                 // get parent of #house-homepage (don't get by ID)
                 let houseHeader = charCards[i].querySelector('#house-homepage');
                 let houseHeaderParent = houseHeader.parentElement;
-                console.log(houseHeaderParent);
-                console.log(houseHeaderParent.dataset.house);
                 // if parent dataset.house === certain house, subtract 1 from its homepage counter:
                 if (houseHeaderParent.dataset.house === 'gryffindor') {
                     gryffindorCharsTotalHomepage -= 1;
