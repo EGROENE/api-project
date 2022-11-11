@@ -16,16 +16,36 @@ async function getChars() {
     return newCharsArr;
 }
 
-// Initialize vars to tally number of Gryffindor chars on homepage, favs modal:
+// Initialize vars to tally number of house chars on homepage, favs modal:
 let gryffindorCharsTotalHomepage = 0;
 let gryffindorCharsTotalFavs = 0;
 
-// Define function to display total Gryffindor chars on homepage:
-const displayGryffindorTotalHomepage = () => {
-    document.getElementById('total-gryffindor-homepage').innerHTML = gryffindorCharsTotalHomepage
+let slytherinCharsTotalHomepage = 0;
+let slytherinCharsTotalFavs = 0;
+
+let ravenclawCharsTotalHomepage = 0;
+let ravenclawCharsTotalFavs = 0;
+
+let hufflepuffCharsTotalHomepage = 0;
+let hufflepuffCharsTotalFavs = 0;
+
+// Define function to display total house chars on homepage:
+const displayHouseTotalHomepage = (house) => {
+    if (house === 'gryffindor') {
+        document.getElementById(`total-${house}-homepage`).innerHTML = gryffindorCharsTotalHomepage
+    }
+    if (house === 'slytherin') {
+        document.getElementById(`total-${house}-homepage`).innerHTML = slytherinCharsTotalHomepage
+    }
+    if (house === 'ravenclaw') {
+        document.getElementById(`total-${house}-homepage`).innerHTML = ravenclawCharsTotalHomepage
+    }
+    if (house === 'hufflepuff') {
+        document.getElementById(`total-${house}-homepage`).innerHTML = hufflepuffCharsTotalHomepage
+    }
 }
 
-// Define function to display total Gryffindor chars in favs:
+// Define function to display total house chars in favs:
 
 // Function to populate homepage, fav modal with specified items from API:
 async function buildPages() {
@@ -60,14 +80,29 @@ async function buildPages() {
                 + "<p><span>Actor/Actress: </span>" + newCharsArr[i].actor + "</p>"
             + "</div>"
     }
-    // Tally number of chars in house Gryffindor upon fetching & displaying of specified API items (basically, upon pageload):
+    // Tally number of chars in houses upon fetching & displaying of specified API items (basically, upon pageload):
     for (char of newCharsArr) {
         if (char.house.toLowerCase() === 'gryffindor') {
             gryffindorCharsTotalHomepage += 1;
         }
+        if (char.house.toLowerCase() === 'slytherin') {
+            slytherinCharsTotalHomepage += 1;
+        }
+        if (char.house.toLowerCase() === 'ravenclaw') {
+            ravenclawCharsTotalHomepage += 1;
+        }
+        if (char.house.toLowerCase() === 'hufflepuff') {
+            hufflepuffCharsTotalHomepage += 1;
+        }
     }
-    displayGryffindorTotalHomepage();
+    displayHouseTotalHomepage('gryffindor');
     console.log(gryffindorCharsTotalHomepage);
+    displayHouseTotalHomepage('slytherin');
+    console.log(slytherinCharsTotalHomepage);
+    displayHouseTotalHomepage('ravenclaw');
+    console.log(ravenclawCharsTotalHomepage);
+    displayHouseTotalHomepage('hufflepuff');
+    console.log(hufflepuffCharsTotalHomepage);
 }
 
 // Function to make characters appear/disappear from homepage & favs modal upon clicking of corresponding buttons:
@@ -93,12 +128,27 @@ async function favsFunctionality() {
                 let houseHeaderParent = houseHeader.parentElement;
                 console.log(houseHeaderParent);
                 console.log(houseHeaderParent.dataset.house);
-                // if parent dataset.house === 'gryffindor', subtract 1 from counter
+                // if parent dataset.house === certain house, subtract 1 from its counter
                 if (houseHeaderParent.dataset.house === 'gryffindor') {
                     gryffindorCharsTotalHomepage -= 1;
                 }
+                if (houseHeaderParent.dataset.house === 'slytherin') {
+                    slytherinCharsTotalHomepage -= 1;
+                }
+                if (houseHeaderParent.dataset.house === 'ravenclaw') {
+                    ravenclawCharsTotalHomepage -= 1;
+                }
+                if (houseHeaderParent.dataset.house === 'hufflepuff') {
+                    hufflepuffCharsTotalHomepage -= 1;
+                }
                 console.log(gryffindorCharsTotalHomepage);
-                displayGryffindorTotalHomepage();
+                displayHouseTotalHomepage('gryffindor');
+                console.log(slytherinCharsTotalHomepage);
+                displayHouseTotalHomepage('slytherin');
+                console.log(ravenclawCharsTotalHomepage);
+                displayHouseTotalHomepage('ravenclaw');
+                console.log(hufflepuffCharsTotalHomepage);
+                displayHouseTotalHomepage('hufflepuff');
                 // Make card on homepage invisible:
                 charCards[i].classList.add('invisible');
                 // Make card on favs visible:
@@ -118,12 +168,27 @@ async function favsFunctionality() {
                 let houseHeaderParent = houseHeader.parentElement;
                 console.log(houseHeaderParent);
                 console.log(houseHeaderParent.dataset.house);
-                // if parent dataset.house === 'gryffindor', subtract 1 from counter
+                // if parent dataset.house === certain house, add 1 from its counter
                 if (houseHeaderParent.dataset.house === 'gryffindor') {
                     gryffindorCharsTotalHomepage += 1;
                 }
+                if (houseHeaderParent.dataset.house === 'slytherin') {
+                    slytherinCharsTotalHomepage += 1;
+                }
+                if (houseHeaderParent.dataset.house === 'ravenclaw') {
+                    ravenclawCharsTotalHomepage += 1;
+                }
+                if (houseHeaderParent.dataset.house === 'hufflepuff') {
+                    hufflepuffCharsTotalHomepage += 1;
+                }
                 console.log(gryffindorCharsTotalHomepage);
-                displayGryffindorTotalHomepage();
+                displayHouseTotalHomepage('gryffindor');
+                console.log(slytherinCharsTotalHomepage);
+                displayHouseTotalHomepage('slytherin');
+                console.log(ravenclawCharsTotalHomepage);
+                displayHouseTotalHomepage('ravenclaw');
+                console.log(hufflepuffCharsTotalHomepage);
+                displayHouseTotalHomepage('hufflepuff');
                 // Make card on favs modal invisible again:
                 charCards[i].classList.remove('invisible');
                 // Make card reappear on homepage:
