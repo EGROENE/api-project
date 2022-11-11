@@ -109,10 +109,15 @@ async function buildPages() {
             hufflepuffCharsTotalHomepage += 1;
         }
     }
+    // Display house total default values on homepage & favs modal:
     displayHouseTotalHomepage('gryffindor');
     displayHouseTotalHomepage('slytherin');
     displayHouseTotalHomepage('ravenclaw');
     displayHouseTotalHomepage('hufflepuff');
+    displayHouseTotalFavModal('gryffindor');
+    displayHouseTotalFavModal('slytherin');
+    displayHouseTotalFavModal('ravenclaw');
+    displayHouseTotalFavModal('hufflepuff');
 }
 
 // Function to make characters appear/disappear from homepage & favs modal upon clicking of corresponding buttons:
