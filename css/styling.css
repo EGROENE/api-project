@@ -64,7 +64,6 @@ h2,
 h2:hover {
     cursor: pointer;
     color: purple;
-    transition: 700ms;
 }
 
 .sort-btns-container-homepage {
