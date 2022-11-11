@@ -156,6 +156,7 @@ h2:hover {
 }
 
 #totals-section-homepage {
+    border-radius: var(--size-12);
     background: rgb(243, 243, 243);
     font-family: 'Potterfont', serif;
     font-size: var(--size-48);
