@@ -19,6 +19,7 @@
     --ravenclaw-blue: #222F5B;
     --ravenclaw-gold: #946B2D;
     --hufflepuff-yellow: #FFD800;
+    -hufflepuff-brown: #DE9245;
 }
 
 body {
@@ -157,13 +158,45 @@ h2:hover {
 }
 
 #totals-section-homepage {
-    color: white;
+    background: rgb(128, 127, 127);
     font-family: 'Potterfont', serif;
     font-size: var(--size-32);
+    padding: var(--size-12);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-#totals-section-homepage span {
+#total-gryffindor-homepage-header {
+    color: var(--gryffindor-red);
+}
+
+#total-gryffindor-homepage {
     color: var(--hp-gold);
+}
+
+#total-slytherin-homepage-header {
+    color: var(--slytherin-green);
+}
+
+#total-slytherin-homepage {
+    color: var(--slytherin-silver);
+}
+
+#total-ravenclaw-homepage-header {
+    color: var(--ravenclaw-blue);
+}
+
+#total-ravenclaw-homepage {
+    color: var(--ravenclaw-gold);
+}
+
+#total-hufflepuff-homepage-header {
+    color:var(--hufflepuff-brown);
+}
+
+#total-hufflepuff-homepage {
+    color: var(--hufflepuff-yellow);
 }
 
 /* MODAL STYLING */
