@@ -31,8 +31,7 @@ body {
 @font-face { font-family: Potterfont; src: url('../assets/font/HarryP-MVZ6w.ttf'); } 
 
 #pg-header-container,
-#modal-header-container,
-#totals-section-homepage {
+#modal-header-container {
     background: rgba(0, 0, 0, 0.8);
     padding: var(--size-12);
 }
@@ -158,7 +157,7 @@ h2:hover {
 }
 
 #totals-section-homepage {
-    background: rgb(128, 127, 127);
+    background: rgb(114, 114, 114);
     font-family: 'Potterfont', serif;
     font-size: var(--size-32);
     padding: var(--size-12);
