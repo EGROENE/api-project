@@ -13,6 +13,12 @@
     --size-56: 3.5rem;
     --size-64: 4rem;
     --hp-gold: #D3A625;
+    --gryffindor-red: #AE0001;
+    --slytherin-green: #2A623D;
+    --slytherin-silver: #AAAAAA;
+    --ravenclaw-blue: #222F5B;
+    --ravenclaw-gold: #946B2D;
+    --hufflepuff-yellow: #FFD800;
 }
 
 body {
