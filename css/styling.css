@@ -124,7 +124,7 @@ h2:hover {
 
 .char-card header,
 .fav-char-card header {
-    font-size: var(--size-32);
+    font-size: var(--size-48);
     color: var(--hp-gold);
 }
 
