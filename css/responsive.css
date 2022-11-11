@@ -1,0 +1,101 @@
+@media screen and (max-width: 1280px) {
+    .favs-house-totals-container {
+        width: 108%;
+    }
+}
+
+@media screen and (max-width: 962px) {
+    #totals-section-homepage {
+        font-size: var(--size-32);
+    }
+}
+
+@media screen and (max-width: 810px) {
+    #chars-container, 
+    #favs-modal-body {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .favs-house-totals-container {
+        width: 104%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #totals-section-homepage {
+        font-size: var(--size-48);
+        padding: var(--size-16);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 16px;
+        text-align: center;
+    }
+
+    .favs-house-totals-container {
+        font-size: var(--size-20);
+        width: 108%;
+    }
+}
+
+@media screen and (max-width: 601px) {
+    #totals-section-homepage {
+        font-size: var(--size-42);
+    }
+
+    .favs-house-totals-container {
+        font-size: var(--size-16);
+        width: 102%;
+        line-height: var(--size-24);
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .sort-btns-container-homepage {
+        margin-top: var(--size-42);
+    }
+
+    #chars-container, 
+    #favs-modal-body {
+        margin: var(--size-12) 0px;
+        column-gap: var(--size-8);
+        grid-template-columns: 1fr;
+    }
+
+    .favs-btn, 
+    .del-favs-btn {
+        font-size: var(--size-32);
+    }
+
+    .char-card header, 
+    .fav-char-card header {
+        font-size:var(--size-64);
+        margin-top: 32px;
+    }
+
+    .char-card p,
+    .fav-char-card p {
+        font-size: var(--size-42);
+    }
+
+    #totals-section-homepage {
+        font-size: var(--size-28);
+    }
+
+    .favs-house-totals-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .favs-house-totals-container {
+        width: 112%;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    #totals-section-homepage {
+        font-size: var(--size-24);
+    }
+}
